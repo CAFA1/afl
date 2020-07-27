@@ -2533,34 +2533,34 @@ int tcg_gen_code(TCGContext *s, TranslationBlock *tb)
 {
     int i, oi, oi_next, num_insns;
 
-#ifdef CONFIG_PROFILER
-    {
-        int n;
+	#ifdef CONFIG_PROFILER
+	    {
+	        int n;
 
-        n = s->gen_op_buf[0].prev + 1;
-        s->op_count += n;
-        if (n > s->op_count_max) {
-            s->op_count_max = n;
-        }
+	        n = s->gen_op_buf[0].prev + 1;
+	        s->op_count += n;
+	        if (n > s->op_count_max) {
+	            s->op_count_max = n;
+	        }
 
-        n = s->nb_temps;
-        s->temp_count += n;
-        if (n > s->temp_count_max) {
-            s->temp_count_max = n;
-        }
-    }
-#endif
+	        n = s->nb_temps;
+	        s->temp_count += n;
+	        if (n > s->temp_count_max) {
+	            s->temp_count_max = n;
+	        }
+	    }
+	#endif
 
-#ifdef DEBUG_DISAS
-    if (unlikely(qemu_loglevel_mask(CPU_LOG_TB_OP)
-                 && qemu_log_in_addr_range(tb->pc))) {
-        qemu_log_lock();
-        qemu_log("OP:\n");
-        tcg_dump_ops(s);
-        qemu_log("\n");
-        qemu_log_unlock();
-    }
-#endif
+	#ifdef DEBUG_DISAS
+	    if (unlikely(qemu_loglevel_mask(CPU_LOG_TB_OP)
+	                 && qemu_log_in_addr_range(tb->pc))) {
+	        qemu_log_lock();
+	        qemu_log("OP:\n");
+	        tcg_dump_ops(s);
+	        qemu_log("\n");
+	        qemu_log_unlock();
+	    }
+	#endif
 
 #ifdef CONFIG_PROFILER
     s->opt_time -= profile_getclock();

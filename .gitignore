@@ -22,6 +22,7 @@ afl-llvm-rt.o
 testcases/mytest/in/
 testcases/mytest/out/
 testcases/mytest/mytest
+testcases/mytest/trace.txt
 
 
 
